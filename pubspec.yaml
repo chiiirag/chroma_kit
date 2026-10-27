@@ -1,0 +1,17 @@
+name: chroma_kit
+description: A customizable Flutter color picker and toolkit with color formats, palettes, and theme utilities.
+version: 0.1.0
+homepage: https://github.com/chiiirag/chroma_kit
+repository: https://github.com/chiiirag/chroma_kit
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
