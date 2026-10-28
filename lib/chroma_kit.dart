@@ -1,1 +1,4 @@
-export 'src/chroma_kit_base.dart';
+/// Chroma Kit: color utilities for Flutter applications.
+library;
+
+export 'src/chroma_color.dart';

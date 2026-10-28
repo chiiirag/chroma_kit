@@ -1,39 +1,79 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+# Chroma Kit
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/tools/pub/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A customizable color toolkit for Flutter, with validated color values,
+HEX parsing, RGB channels, HSL conversion, and opacity support.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Parse shorthand and full-length HEX colors.
+- Support RGB and alpha channels.
+- Convert between HEX, RGB, Flutter `Color`, and HSL.
+- Create colors with validated channel values.
+- Adjust opacity and copy individual channels.
+- Immutable color values with value equality.
+- Designed to support a future customizable color picker UI.
 
-## Getting started
+## Installation
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add Chroma Kit to your Flutter project:
+
+```bash
+flutter pub add chroma_kit
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
 ```dart
-const like = 'sample';
+import 'package:chroma_kit/chroma_kit.dart';
+
+void main() {
+  final color = ChromaColor.fromHex('#7C4DFF');
+
+  print(color.toHex());
+  print(color.toHex(includeAlpha: true));
+
+  print('Red: ${color.red}');
+  print('Green: ${color.green}');
+  print('Blue: ${color.blue}');
+
+  final hsl = color.hsl;
+  print('Hue: ${hsl.hue}');
+  print('Saturation: ${hsl.saturation}');
+  print('Lightness: ${hsl.lightness}');
+
+  final translucent = color.withOpacity(0.5);
+  print(translucent.toHex(includeAlpha: true));
+}
 ```
 
-## Additional information
+## Supported HEX formats
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+| Format | Meaning |
+| --- | --- |
+| `#RGB` | Shorthand RGB |
+| `#ARGB` | Shorthand alpha and RGB |
+| `#RRGGBB` | RGB |
+| `#AARRGGBB` | Alpha and RGB |
+
+Alpha-first formats follow Flutter's ARGB convention.
+
+## Input validation
+
+Invalid HEX strings throw `FormatException`.
+Invalid RGB, alpha, HSL, and opacity values throw `ArgumentError`.
+
+## Development
+
+Run the following commands from the package root:
+
+```bash
+flutter pub get
+dart format .
+flutter analyze
+flutter test
+```
+
+## License
+
+MIT
